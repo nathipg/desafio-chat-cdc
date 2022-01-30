@@ -1,6 +1,7 @@
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const ChatList = styled.div`
+const StyledChatList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -14,5 +15,15 @@ const ChatList = styled.div`
   ); // 73px => OptionsBar height; 80px => MessageBar height
   overflow: auto;
 `;
+
+const ChatList = ({ children }) => {
+  const elementRef = useRef();
+
+  useEffect(() => {
+    elementRef.current.scrollTop = elementRef.current.scrollHeight;
+  }, []);
+
+  return <StyledChatList ref={elementRef}>{children}</StyledChatList>;
+};
 
 export default ChatList;

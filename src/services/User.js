@@ -26,8 +26,58 @@ const allChats = [
       },
       {
         user: 1,
-        content: 'Alright',
+        content: 'Good to know',
         date: '2021-01-29 20:35:00',
+      },
+      {
+        user: 1,
+        content: "I'm alright",
+        date: '2021-01-29 20:35:05',
+      },
+      {
+        user: 2,
+        content: 'Hello :)',
+        date: '2021-01-30 20:30:00',
+      },
+      {
+        user: 2,
+        content: "What's up?",
+        date: '2021-01-30 20:23:02',
+      },
+      {
+        user: 1,
+        content: 'Hi õ/',
+        date: '2021-01-30 20:23:00',
+      },
+      {
+        user: 1,
+        content: 'Alright and you?',
+        date: '2021-01-30 20:30:05',
+      },
+      {
+        user: 2,
+        content: 'Fine',
+        date: '2021-01-30 20:35:00',
+      },
+      {
+        user: 2,
+        content: 'Do you know if we are going to work on the holyday?',
+        date: '2021-01-30 20:35:30',
+      },
+      {
+        user: 1,
+        content: 'Hmmm',
+        date: '2021-01-30 20:45:00',
+      },
+      {
+        user: 1,
+        content: "That's a good question",
+        date: '2021-01-30 20:45:10',
+      },
+      {
+        user: 1,
+        content: "Candice may know this, but I don't",
+        date: '2021-01-30 20:45:00',
       },
     ],
   },
