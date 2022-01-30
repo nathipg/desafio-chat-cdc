@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  :root {
+    --dark-gray: #696969;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -14,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--light-gray);
+    color: var(--dark-gray);
   }
 
   code {
