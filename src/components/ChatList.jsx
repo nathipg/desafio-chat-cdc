@@ -7,11 +7,11 @@ const ChatList = styled.div`
   background: var(--pale-blue);
   padding: 1rem;
   max-height: calc(
-    100vh - 73px - 75px
-  ); // 73px => OptionsBar height; 75px => MessageBar height
+    100vh - 73px - 80px
+  ); // 73px => OptionsBar height; 80px => MessageBar height
   min-height: calc(
-    100vh - 73px - 75px
-  ); // 73px => OptionsBar height; 75px => MessageBar height
+    100vh - 73px - 80px
+  ); // 73px => OptionsBar height; 80px => MessageBar height
   overflow: auto;
 `;
 
