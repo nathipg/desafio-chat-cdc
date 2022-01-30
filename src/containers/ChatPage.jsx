@@ -8,6 +8,7 @@ import OptionsBar from '../components/OptionsBar';
 import OptionsBarItem from '../components/OptionsBarItem';
 import UserIcon from '../components/UserIcon';
 import ChatListItem from '../components/ChatListItem';
+import MessageBar from '../components/MessageBar';
 
 const ChatPage = ({ receiver, loggedUser, messages }) => {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ const ChatPage = ({ receiver, loggedUser, messages }) => {
         </OptionsBarItem>
       </OptionsBar>
       <ChatList>{listMessages()}</ChatList>
+      <MessageBar />
     </>
   );
 };

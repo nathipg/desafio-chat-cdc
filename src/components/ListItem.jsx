@@ -8,6 +8,10 @@ const StyledListItem = styled.div`
   gap: 0.5rem;
   padding: 1rem;
   background-color: ${({ active }) => (active ? 'var(--pale-blue)' : 'none')};
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledText = styled.div`
