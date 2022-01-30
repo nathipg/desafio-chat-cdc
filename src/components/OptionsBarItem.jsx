@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledOptionsBarItem = styled.div`
+const OptionsBarItem = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -17,9 +17,5 @@ const StyledOptionsBarItem = styled.div`
     return '';
   }}
 `;
-
-const OptionsBarItem = ({ children, align }) => {
-  return <StyledOptionsBarItem align={align}>{children}</StyledOptionsBarItem>;
-};
 
 export default OptionsBarItem;

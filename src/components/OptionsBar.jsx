@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledOptionsBar = styled.div`
+const OptionsBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: right;
@@ -8,9 +8,5 @@ const StyledOptionsBar = styled.div`
   border-bottom: 1px solid var(--light-gray);
   padding: 1rem;
 `;
-
-const OptionsBar = ({ children }) => {
-  return <StyledOptionsBar>{children}</StyledOptionsBar>;
-};
 
 export default OptionsBar;

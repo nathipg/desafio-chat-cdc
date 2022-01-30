@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 
-const StyledMessage = styled.span`
+const Message = styled.span`
   display: block;
   text-align: center;
   margin: 1rem;
 `;
-
-const Message = ({ children }) => {
-  return <StyledMessage>{children}</StyledMessage>;
-};
 
 export default Message;

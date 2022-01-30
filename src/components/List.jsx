@@ -1,5 +1,3 @@
-const List = ({ children }) => {
-  return <>{children}</>;
-};
+const List = ({ children }) => <>{children}</>;
 
 export default List;
