@@ -12,6 +12,7 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [loggedUser, setLoggedUser] = useState(null);
   const [chats, setChats] = useState([]);
+  const [currentChat, setCurrentChat] = useState(null);
   const [loading, setLoading] = useState({
     complete: false,
     error: false,
@@ -51,10 +52,26 @@ const App = () => {
             path="/"
             exact
             element={
-              <InboxPage users={users} loggedUser={loggedUser} chats={chats} />
+              <InboxPage
+                users={users}
+                loggedUser={loggedUser}
+                chats={chats}
+                selectChatHandler={userId => setCurrentChat(userId)}
+              />
             }
           />
-          <Route path="/chat" element={<ChatPage />} />
+          {currentChat && (
+            <Route
+              path="/chat"
+              element={
+                <ChatPage
+                  receiver={currentChat.receiver}
+                  loggedUser={loggedUser}
+                  messages={currentChat.messages}
+                />
+              }
+            />
+          )}
           <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       )}

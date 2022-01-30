@@ -4,8 +4,9 @@ import { faArrowLeft, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 import OptionsBar from '../components/OptionsBar';
 import OptionsBarItem from '../components/OptionsBarItem';
+import UserIcon from '../components/UserIcon';
 
-const ChatPage = () => {
+const ChatPage = ({ receiver, loggedUser, messages }) => {
   const navigate = useNavigate();
 
   return (
@@ -13,6 +14,7 @@ const ChatPage = () => {
       <OptionsBar>
         <OptionsBarItem align="left">
           <FontAwesomeIcon icon={faArrowLeft} onClick={() => navigate('/')} />
+          <UserIcon picture={receiver.picture} name={receiver.name} />
         </OptionsBarItem>
         <OptionsBarItem>
           <FontAwesomeIcon icon={faEllipsisV} />

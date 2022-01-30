@@ -12,7 +12,7 @@ import Message from '../components/Message';
 import OptionsBar from '../components/OptionsBar';
 import OptionsBarItem from '../components/OptionsBarItem';
 
-const InboxPage = ({ users, loggedUser, chats }) => {
+const InboxPage = ({ users, loggedUser, chats, selectChatHandler }) => {
   const navigate = useNavigate();
 
   const listChats = () => {
@@ -30,7 +30,13 @@ const InboxPage = ({ users, loggedUser, chats }) => {
           key={userId}
           user={user}
           lastMessage={lastMessage}
-          clickHandler={() => navigate('/chat')}
+          clickHandler={() => {
+            selectChatHandler({
+              receiver: user,
+              messages: chat.messages,
+            });
+            navigate('/chat');
+          }}
         />
       );
     });
