@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import ChatPage from './containers/ChatPage';
 import InboxPage from './containers/InboxPage';
@@ -55,6 +55,7 @@ const App = () => {
             }
           />
           <Route path="/chat" element={<ChatPage />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       )}
     </>

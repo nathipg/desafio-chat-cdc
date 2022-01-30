@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSearch,
@@ -12,6 +13,8 @@ import OptionsBar from '../components/OptionsBar';
 import OptionsBarItem from '../components/OptionsBarItem';
 
 const InboxPage = ({ users, loggedUser, chats }) => {
+  const navigate = useNavigate();
+
   const listChats = () => {
     if (chats.length === 0) {
       return <Message>No chats found</Message>;
@@ -27,11 +30,12 @@ const InboxPage = ({ users, loggedUser, chats }) => {
           key={userId}
           user={user}
           lastMessage={lastMessage}
-          clickHandler={() => console.log('Clicked!')}
+          clickHandler={() => navigate('/chat')}
         />
       );
     });
   };
+
   return (
     <>
       <OptionsBar>
