@@ -6,6 +6,7 @@ import {
   faBars,
 } from '@fortawesome/free-solid-svg-icons';
 
+import Button from '../components/Button';
 import List from '../components/List';
 import ListItem from '../components/ListItem';
 import Message from '../components/Message';
@@ -46,13 +47,19 @@ const InboxPage = ({ users, loggedUser, chats, selectChatHandler }) => {
     <>
       <OptionsBar>
         <OptionsBarItem align="left">
-          <FontAwesomeIcon icon={faBars} />
+          <Button>
+            <FontAwesomeIcon icon={faBars} />
+          </Button>
         </OptionsBarItem>
         <OptionsBarItem>
-          <FontAwesomeIcon icon={faSearch} />
+          <Button>
+            <FontAwesomeIcon icon={faSearch} />
+          </Button>
         </OptionsBarItem>
         <OptionsBarItem>
-          <FontAwesomeIcon icon={faEllipsisV} />
+          <Button>
+            <FontAwesomeIcon icon={faEllipsisV} />
+          </Button>
         </OptionsBarItem>
       </OptionsBar>
       <List>{listChats()}</List>

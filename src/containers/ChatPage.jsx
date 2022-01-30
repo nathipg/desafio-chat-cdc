@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
+import Button from '../components/Button';
 import ChatList from '../components/ChatList';
 import OptionsBar from '../components/OptionsBar';
 import OptionsBarItem from '../components/OptionsBarItem';
@@ -30,16 +31,18 @@ const ChatPage = ({ receiver, loggedUser, messages }) => {
     <>
       <OptionsBar>
         <OptionsBarItem align="left">
-          <FontAwesomeIcon icon={faArrowLeft} onClick={() => navigate('/')} />
+          <Button onClick={() => navigate('/')}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </Button>
           <UserIcon picture={receiver.picture} name={receiver.name} />
         </OptionsBarItem>
         <OptionsBarItem>
-          <FontAwesomeIcon icon={faEllipsisV} />
+          <Button>
+            <FontAwesomeIcon icon={faEllipsisV} />
+          </Button>
         </OptionsBarItem>
       </OptionsBar>
-      <ChatList>
-        {listMessages()}
-      </ChatList>
+      <ChatList>{listMessages()}</ChatList>
     </>
   );
 };
