@@ -22,7 +22,7 @@ const App = () => {
         console.error(err);
       }
     })();
-  }, []);
+  }, [setUsers, setLoggedUser, setChats]);
 
   return (
     <></>
