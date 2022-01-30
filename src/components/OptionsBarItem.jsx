@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
 const StyledOptionsBarItem = styled.div`
-  ${({align}) => {
-    if(align === 'left') {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  ${({ align }) => {
+    if (align === 'left') {
       return 'margin-right: auto;';
     }
 
-    if(align === 'center') {
+    if (align === 'center') {
       return 'margin: auto;';
     }
 

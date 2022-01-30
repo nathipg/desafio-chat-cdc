@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Icon from './Icon';
+import UserIcon from './UserIcon';
 
 const StyledListItem = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const StyledListItem = styled.div`
 const ListItem = ({ user, lastMessage, active, clickHandler }) => {
   return (
     <StyledListItem active={active} onClick={clickHandler}>
-      <Icon picture={user.picture} />
+      <UserIcon picture={user.picture} />
       <div className="text">
         <h2>{user.name}</h2>
         <p>{lastMessage}</p>
