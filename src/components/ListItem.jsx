@@ -7,20 +7,20 @@ const StyledListItem = styled.div`
   align-items: center;
   gap: 0.5rem;
   padding: 1rem;
-  background-color: ${({ active }) => active ? 'var(--pale-blue)' : 'none'};
+  background-color: ${({ active }) => (active ? 'var(--pale-blue)' : 'none')};
+`;
 
-  .text {
-    max-width: calc(100% - 3rem); // 3rem => icon width + gap
+const StyledText = styled.div`
+  max-width: calc(100% - 3rem); // 3rem => icon width + gap
 
-    h2 {
-      font-size: 1rem;
-    }
+  h2 {
+    font-size: 1rem;
+  }
 
-    p {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
+  p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 `;
 
@@ -28,10 +28,10 @@ const ListItem = ({ user, lastMessage, active, clickHandler }) => {
   return (
     <StyledListItem active={active} onClick={clickHandler}>
       <UserIcon picture={user.picture} />
-      <div className="text">
+      <StyledText>
         <h2>{user.name}</h2>
         <p>{lastMessage}</p>
-      </div>
+      </StyledText>
     </StyledListItem>
   );
 };
