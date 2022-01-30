@@ -33,14 +33,6 @@ const GlobalStyle = createGlobalStyle`
 
   #root {
     min-width: 350px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  html,
-  body,
-  #root {
-    min-height: 100vh;
   }
 `;
 
