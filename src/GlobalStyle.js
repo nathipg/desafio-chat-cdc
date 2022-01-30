@@ -2,9 +2,12 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   :root {
+    --pale-blue: #EDF5F9;
+    --light-blue: #D7E4F4;
     --dark-gray: #696969;
     --light-gray: #D3D3D3;
-    --pale-blue: #EDF5F9;
+    --green: #28BFBF;
+    --white: #FFFAFA;
   }
 
   * {
