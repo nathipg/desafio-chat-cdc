@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
@@ -9,9 +10,13 @@ import OptionsBarItem from '../components/OptionsBarItem';
 import UserIcon from '../components/UserIcon';
 import ChatListItem from '../components/ChatListItem';
 import MessageBar from '../components/MessageBar';
+import Backdrop from '../components/Backdrop';
+import Menu from '../components/Menu';
+import MenuItem from '../components/MenuItem';
 
 const ChatPage = ({ receiver, loggedUser, messages }) => {
   const navigate = useNavigate();
+  const [showMenu, setShowMenu] = useState(false);
   const chatUsers = [receiver, loggedUser];
 
   const listMessages = () => {
@@ -38,9 +43,18 @@ const ChatPage = ({ receiver, loggedUser, messages }) => {
           <UserIcon picture={receiver.picture} name={receiver.name} />
         </OptionsBarItem>
         <OptionsBarItem>
-          <Button>
+          <Button onClick={() => setShowMenu(!showMenu)}>
             <FontAwesomeIcon icon={faEllipsisV} />
           </Button>
+          {showMenu && (
+            <>
+              <Backdrop onClick={() => setShowMenu(!showMenu)} />
+              <Menu>
+                <MenuItem>See contact</MenuItem>
+                <MenuItem>Clear chat</MenuItem>
+              </Menu>
+            </>
+          )}
         </OptionsBarItem>
       </OptionsBar>
       <ChatList>{listMessages()}</ChatList>
