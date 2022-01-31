@@ -18,7 +18,7 @@ import Menu from '../components/Menu';
 import MenuItem from '../components/MenuItem';
 import Backdrop from '../components/Backdrop';
 
-const InboxPage = ({ users, loggedUser, chats, selectChatHandler }) => {
+const InboxPage = ({ users, loggedUser, chats }) => {
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -40,11 +40,14 @@ const InboxPage = ({ users, loggedUser, chats, selectChatHandler }) => {
           user={user}
           lastMessage={lastMessage}
           clickHandler={() => {
-            selectChatHandler({
-              receiver: user,
-              messages: chat.messages,
+            navigate('/chat', {
+              state: {
+                currentChat: {
+                  receiver: user,
+                  messages: chat.messages,
+                },
+              },
             });
-            navigate('/chat');
           }}
         />
       );

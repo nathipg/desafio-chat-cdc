@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 
 import ChatPage from './containers/ChatPage';
 import InboxPage from './containers/InboxPage';
@@ -10,17 +16,32 @@ import { loadUsers, loadUserChats } from './services/User';
 const App = () => {
   const loggedUserId = 1; // It's fixed because there is no real login
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const [users, setUsers] = useState([]);
   const [loggedUser, setLoggedUser] = useState(null);
   const [chats, setChats] = useState([]);
-  const [currentChat, setCurrentChat] = useState(null);
   const [loading, setLoading] = useState({
     complete: false,
     error: false,
   });
 
-  const changeLoggedUserName = name => {
+  const changeLoggedUserNameHandler = name => {
     setLoggedUser(prevState => ({ ...prevState, name }));
+  };
+
+  const removeChatHandler = chatUsers => {
+    const updatedChats = chats.filter(
+      chat =>
+        !(
+          chat.members.indexOf(chatUsers[0].id) !== -1 &&
+          chat.members.indexOf(chatUsers[1].id) !== -1
+        )
+    );
+
+    setChats(updatedChats);
+
+    navigate('/');
   };
 
   useEffect(() => {
@@ -57,12 +78,7 @@ const App = () => {
             path="/"
             exact
             element={
-              <InboxPage
-                users={users}
-                loggedUser={loggedUser}
-                chats={chats}
-                selectChatHandler={userId => setCurrentChat(userId)}
-              />
+              <InboxPage users={users} loggedUser={loggedUser} chats={chats} />
             }
           />
           <Route
@@ -71,18 +87,19 @@ const App = () => {
             element={
               <ProfilePage
                 loggedUser={loggedUser}
-                changeNameHandler={changeLoggedUserName}
+                changeNameHandler={changeLoggedUserNameHandler}
               />
             }
           />
-          {currentChat && (
+          {location.state && location.state.currentChat && (
             <Route
               path="/chat"
               element={
                 <ChatPage
-                  receiver={currentChat.receiver}
+                  receiver={location.state.currentChat.receiver}
                   loggedUser={loggedUser}
-                  messages={currentChat.messages}
+                  messages={location.state.currentChat.messages}
+                  removeChatHandler={removeChatHandler}
                 />
               }
             />

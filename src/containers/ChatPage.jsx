@@ -14,7 +14,7 @@ import Backdrop from '../components/Backdrop';
 import Menu from '../components/Menu';
 import MenuItem from '../components/MenuItem';
 
-const ChatPage = ({ receiver, loggedUser, messages }) => {
+const ChatPage = ({ receiver, loggedUser, messages, removeChatHandler }) => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
   const chatUsers = [receiver, loggedUser];
@@ -31,6 +31,10 @@ const ChatPage = ({ receiver, loggedUser, messages }) => {
         />
       );
     });
+  };
+
+  const removeChat = () => {
+    removeChatHandler(chatUsers);
   };
 
   return (
@@ -51,7 +55,7 @@ const ChatPage = ({ receiver, loggedUser, messages }) => {
               <Backdrop onClick={() => setShowMenu(!showMenu)} />
               <Menu>
                 <MenuItem>See contact</MenuItem>
-                <MenuItem>Clear chat</MenuItem>
+                <MenuItem onClick={removeChat}>Remove chat</MenuItem>
               </Menu>
             </>
           )}
