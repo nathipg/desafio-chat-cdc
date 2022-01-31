@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../components/Button';
+import Input from '../components/Input';
 import List from '../components/List';
 import ListItem from '../components/ListItem';
 import Message from '../components/Message';
@@ -15,13 +17,15 @@ import OptionsBarItem from '../components/OptionsBarItem';
 
 const InboxPage = ({ users, loggedUser, chats, selectChatHandler }) => {
   const navigate = useNavigate();
+  const [showSearch, setShowSearch] = useState(false);
+  const [filteredChats, setFilteredChats] = useState(chats);
 
   const listChats = () => {
-    if (chats.length === 0) {
+    if (filteredChats.length === 0) {
       return <Message>No chats found</Message>;
     }
 
-    return chats.map(chat => {
+    return filteredChats.map(chat => {
       const lastMessage = chat.messages.at(-1).content;
       const userId = chat.members.find(userId => userId !== loggedUser.id);
       const user = users.find(user => user.id === userId);
@@ -43,6 +47,18 @@ const InboxPage = ({ users, loggedUser, chats, selectChatHandler }) => {
     });
   };
 
+  const searchChat = event => {
+    const search = event.target.value;
+    const filteredUsers = users.filter(
+      user => user.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
+    );
+    const updatedFilteredChats = chats.filter(chat => {
+      const receiverId = chat.members.find(id => id !== loggedUser.id);
+      return filteredUsers.find(user => user.id === receiverId);
+    });
+    setFilteredChats(updatedFilteredChats);
+  };
+
   return (
     <>
       <OptionsBar>
@@ -52,7 +68,10 @@ const InboxPage = ({ users, loggedUser, chats, selectChatHandler }) => {
           </Button>
         </OptionsBarItem>
         <OptionsBarItem>
-          <Button>
+          {showSearch && (
+            <Input type="text" name="search" size="sm" onChange={searchChat} />
+          )}
+          <Button onClick={() => setShowSearch(!showSearch)}>
             <FontAwesomeIcon icon={faSearch} />
           </Button>
         </OptionsBarItem>

@@ -61,9 +61,11 @@ const ProfilePage = ({ loggedUser, changeNameHandler }) => {
             <SectionTitle>Seu nome</SectionTitle>
             <InputGroup>
               <Input
+                type="text"
                 name="username"
                 value={userName}
                 onChange={event => setUserName(event.target.value)}
+                required={true}
               />
               <Button variant="primary">
                 <FontAwesomeIcon icon={faCheck} />
