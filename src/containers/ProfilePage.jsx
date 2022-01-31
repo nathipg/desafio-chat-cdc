@@ -58,7 +58,7 @@ const ProfilePage = ({ loggedUser, changeNameHandler }) => {
         <UserIcon picture={loggedUser.picture} size="lg" />
         <Section variant="primary">
           <form onSubmit={submitHandler}>
-            <SectionTitle>Seu nome</SectionTitle>
+            <SectionTitle>Your name</SectionTitle>
             <InputGroup>
               <Input
                 type="text"
@@ -74,7 +74,7 @@ const ProfilePage = ({ loggedUser, changeNameHandler }) => {
           </form>
         </Section>
         <Section>
-          <p>Esse nome será visível para seus contatos.</p>
+          <p>This name will be visible to your contacts.</p>
         </Section>
       </StyledContent>
     </>
