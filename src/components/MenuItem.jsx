@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const MenuItem = styled.div`
+const MenuItem = styled.li`
   padding: 1rem;
 
   &:hover {

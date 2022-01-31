@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Menu = styled.div`
+const Menu = styled.ul`
   position: absolute;
   right: 0;
   top: 0;
