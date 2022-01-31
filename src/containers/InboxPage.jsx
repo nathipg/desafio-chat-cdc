@@ -14,10 +14,14 @@ import ListItem from '../components/ListItem';
 import Message from '../components/Message';
 import OptionsBar from '../components/OptionsBar';
 import OptionsBarItem from '../components/OptionsBarItem';
+import Menu from '../components/Menu';
+import MenuItem from '../components/MenuItem';
+import Backdrop from '../components/Backdrop';
 
 const InboxPage = ({ users, loggedUser, chats, selectChatHandler }) => {
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [filteredChats, setFilteredChats] = useState(chats);
 
   const listChats = () => {
@@ -76,9 +80,19 @@ const InboxPage = ({ users, loggedUser, chats, selectChatHandler }) => {
           </Button>
         </OptionsBarItem>
         <OptionsBarItem>
-          <Button>
+          <Button onClick={() => setShowMenu(!showMenu)}>
             <FontAwesomeIcon icon={faEllipsisV} />
           </Button>
+          {showMenu && (
+            <>
+              <Backdrop onClick={() => setShowMenu(!showMenu)} />
+              <Menu>
+                <MenuItem>New chat</MenuItem>
+                <MenuItem>Configuration</MenuItem>
+                <MenuItem>Logout</MenuItem>
+              </Menu>
+            </>
+          )}
         </OptionsBarItem>
       </OptionsBar>
       <List>{listChats()}</List>

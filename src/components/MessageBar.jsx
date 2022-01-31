@@ -14,6 +14,8 @@ const StyledMessageBar = styled.div`
   gap: 1rem;
   border-top: 1px solid var(--light-gray);
   padding: 1rem;
+  min-height: 80px;
+  max-height: 80px;
 `;
 
 const MessageBar = () => {

@@ -22,7 +22,7 @@ const StyledContent = styled.div`
   align-items: center;
   padding: 1rem 0;
   background: var(--pale-blue);
-  min-height: calc(100vh - 60px); // 80px => OptionsBar
+  min-height: calc(100vh - 73px); // 73px => OptionsBar
 
   & > *:first-child {
     margin-bottom: 1rem;
