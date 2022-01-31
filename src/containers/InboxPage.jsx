@@ -38,7 +38,7 @@ const InboxPage = ({ users, loggedUser, chats }) => {
         <ListItem
           key={userId}
           user={user}
-          lastMessage={lastMessage}
+          text={lastMessage}
           clickHandler={() => {
             navigate('/chat', {
               state: {
@@ -84,7 +84,13 @@ const InboxPage = ({ users, loggedUser, chats }) => {
         </OptionsBarItem>
         <OptionsBarItem>
           {showSearch && (
-            <Input type="text" name="search" size="sm" onChange={searchChat} />
+            <Input
+              type="text"
+              name="search"
+              size="sm"
+              onChange={searchChat}
+              autoFocus
+            />
           )}
           <Button onClick={() => setShowSearch(!showSearch)}>
             <FontAwesomeIcon icon={faSearch} />
@@ -98,7 +104,9 @@ const InboxPage = ({ users, loggedUser, chats }) => {
             <>
               <Backdrop onClick={() => setShowMenu(!showMenu)} />
               <Menu>
-                <MenuItem>New chat</MenuItem>
+                <MenuItem onClick={() => navigate('/contacts')}>
+                  New chat
+                </MenuItem>
                 <MenuItem>Configuration</MenuItem>
                 <MenuItem>Logout</MenuItem>
               </Menu>

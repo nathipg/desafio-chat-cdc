@@ -118,16 +118,25 @@ const users = [
     id: 1,
     name: 'Nathália Pissuti',
     picture: 'https://github.com/nathipg.png',
+    status: 'My dog ate all my comics :(',
   },
   {
     id: 2,
     name: 'Debra Harris',
     picture: 'https://randomuser.me/api/portraits/women/43.jpg',
+    status: "Hi there! I'm using Pi Chat now",
   },
   {
     id: 3,
     name: 'Candice Frazier',
     picture: 'https://randomuser.me/api/portraits/women/12.jpg',
+    status: 'No Euphoria spoilers please',
+  },
+  {
+    id: 4,
+    name: 'Michelle Anderson',
+    picture: 'https://randomuser.me/api/portraits/women/89.jpg',
+    status: 'Wanna know how to invest your money? See my YouTube channel',
   },
 ];
 

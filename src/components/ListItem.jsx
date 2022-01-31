@@ -28,13 +28,13 @@ const StyledText = styled.div`
   }
 `;
 
-const ListItem = ({ user, lastMessage, active, clickHandler }) => {
+const ListItem = ({ user, text, active, clickHandler }) => {
   return (
     <StyledListItem active={active} onClick={clickHandler}>
       <UserIcon picture={user.picture} />
       <StyledText>
         <h2>{user.name}</h2>
-        <p>{lastMessage}</p>
+        {text && <p>{text}</p>}
       </StyledText>
     </StyledListItem>
   );

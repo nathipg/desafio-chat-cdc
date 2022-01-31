@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import ChatPage from './containers/ChatPage';
+import ContactsPage from './containers/ContactsPage';
 import InboxPage from './containers/InboxPage';
 import ProfilePage from './containers/ProfilePage';
 
@@ -81,6 +82,11 @@ const App = () => {
             element={
               <InboxPage users={users} loggedUser={loggedUser} chats={chats} />
             }
+          />
+          <Route
+            path="/contacts"
+            exact
+            element={<ContactsPage users={users} loggedUser={loggedUser} />}
           />
           {location.state && location.state.profile && (
             <Route

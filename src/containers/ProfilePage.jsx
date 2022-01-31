@@ -31,6 +31,7 @@ const StyledContent = styled.div`
 
 const ProfilePage = ({ user, loggedUser, changeNameHandler }) => {
   const navigate = useNavigate();
+  
   const [userName, setUserName] = useState(user.name);
   const isCurrentUser = user.id === loggedUser.id;
 
@@ -52,7 +53,7 @@ const ProfilePage = ({ user, loggedUser, changeNameHandler }) => {
           <Button onClick={() => navigate('/')}>
             <FontAwesomeIcon icon={faArrowLeft} />
           </Button>
-          <PageTitle>Profile</PageTitle>
+          <PageTitle>{isCurrentUser ? 'Profile' : 'Contact'}</PageTitle>
         </OptionsBarItem>
       </OptionsBar>
       <StyledContent>
