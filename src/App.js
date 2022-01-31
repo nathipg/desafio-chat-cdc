@@ -18,6 +18,7 @@ const App = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+
   const [users, setUsers] = useState([]);
   const [loggedUser, setLoggedUser] = useState(null);
   const [chats, setChats] = useState([]);
@@ -81,16 +82,19 @@ const App = () => {
               <InboxPage users={users} loggedUser={loggedUser} chats={chats} />
             }
           />
-          <Route
-            path="/profile"
-            exact
-            element={
-              <ProfilePage
-                loggedUser={loggedUser}
-                changeNameHandler={changeLoggedUserNameHandler}
-              />
-            }
-          />
+          {location.state && location.state.profile && (
+            <Route
+              path="/profile"
+              exact
+              element={
+                <ProfilePage
+                  loggedUser={loggedUser}
+                  user={location.state.profile}
+                  changeNameHandler={changeLoggedUserNameHandler}
+                />
+              }
+            />
+          )}
           {location.state && location.state.currentChat && (
             <Route
               path="/chat"

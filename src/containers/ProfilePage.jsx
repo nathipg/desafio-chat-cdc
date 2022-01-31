@@ -29,9 +29,10 @@ const StyledContent = styled.div`
   }
 `;
 
-const ProfilePage = ({ loggedUser, changeNameHandler }) => {
+const ProfilePage = ({ user, loggedUser, changeNameHandler }) => {
   const navigate = useNavigate();
-  const [userName, setUserName] = useState(loggedUser.name);
+  const [userName, setUserName] = useState(user.name);
+  const isCurrentUser = user.id === loggedUser.id;
 
   const submitHandler = event => {
     event.preventDefault();
@@ -55,27 +56,36 @@ const ProfilePage = ({ loggedUser, changeNameHandler }) => {
         </OptionsBarItem>
       </OptionsBar>
       <StyledContent>
-        <UserIcon picture={loggedUser.picture} size="lg" />
-        <Section variant="primary">
-          <form onSubmit={submitHandler}>
-            <SectionTitle>Your name</SectionTitle>
-            <InputGroup>
-              <Input
-                type="text"
-                name="username"
-                value={userName}
-                onChange={event => setUserName(event.target.value)}
-                required={true}
-              />
-              <Button variant="primary">
-                <FontAwesomeIcon icon={faCheck} />
-              </Button>
-            </InputGroup>
-          </form>
-        </Section>
-        <Section>
-          <p>This name will be visible to your contacts.</p>
-        </Section>
+        <UserIcon picture={user.picture} size="lg" />
+        {isCurrentUser ? (
+          <>
+            <Section variant="primary">
+              <form onSubmit={submitHandler}>
+                <SectionTitle>Your name</SectionTitle>
+                <InputGroup>
+                  <Input
+                    type="text"
+                    name="username"
+                    value={userName}
+                    onChange={event => setUserName(event.target.value)}
+                    required={true}
+                  />
+                  <Button variant="primary">
+                    <FontAwesomeIcon icon={faCheck} />
+                  </Button>
+                </InputGroup>
+              </form>
+            </Section>
+            <Section>
+              <p>This name will be visible to your contacts.</p>
+            </Section>
+          </>
+        ) : (
+          <Section variant="primary">
+            <SectionTitle>Name</SectionTitle>
+            <span>{userName}</span>
+          </Section>
+        )}
       </StyledContent>
     </>
   );

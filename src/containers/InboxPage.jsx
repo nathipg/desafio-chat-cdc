@@ -66,11 +66,19 @@ const InboxPage = ({ users, loggedUser, chats }) => {
     setFilteredChats(updatedFilteredChats);
   };
 
+  const goToLoggedUserProfile = () => {
+    navigate('/profile', {
+      state: {
+        profile: loggedUser,
+      },
+    });
+  };
+
   return (
     <>
       <OptionsBar>
         <OptionsBarItem align="left">
-          <Button onClick={() => navigate('/profile')}>
+          <Button onClick={goToLoggedUserProfile}>
             <FontAwesomeIcon icon={faBars} />
           </Button>
         </OptionsBarItem>

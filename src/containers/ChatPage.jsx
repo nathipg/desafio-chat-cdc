@@ -16,6 +16,7 @@ import MenuItem from '../components/MenuItem';
 
 const ChatPage = ({ receiver, loggedUser, messages, removeChatHandler }) => {
   const navigate = useNavigate();
+
   const [showMenu, setShowMenu] = useState(false);
   const chatUsers = [receiver, loggedUser];
 
@@ -37,6 +38,14 @@ const ChatPage = ({ receiver, loggedUser, messages, removeChatHandler }) => {
     removeChatHandler(chatUsers);
   };
 
+  const goToContactProfile = () => {
+    navigate('/profile', {
+      state: {
+        profile: receiver,
+      },
+    });
+  };
+
   return (
     <>
       <OptionsBar>
@@ -54,7 +63,7 @@ const ChatPage = ({ receiver, loggedUser, messages, removeChatHandler }) => {
             <>
               <Backdrop onClick={() => setShowMenu(!showMenu)} />
               <Menu>
-                <MenuItem>See contact</MenuItem>
+                <MenuItem onClick={goToContactProfile}>See contact</MenuItem>
                 <MenuItem onClick={removeChat}>Remove chat</MenuItem>
               </Menu>
             </>
