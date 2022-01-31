@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import ChatPage from './containers/ChatPage';
 import InboxPage from './containers/InboxPage';
+import ProfilePage from './containers/ProfilePage';
 
 import { loadUsers, loadUserChats } from './services/User';
 
@@ -17,6 +18,10 @@ const App = () => {
     complete: false,
     error: false,
   });
+
+  const changeLoggedUserName = name => {
+    setLoggedUser(prevState => ({ ...prevState, name }));
+  };
 
   useEffect(() => {
     (async () => {
@@ -57,6 +62,16 @@ const App = () => {
                 loggedUser={loggedUser}
                 chats={chats}
                 selectChatHandler={userId => setCurrentChat(userId)}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            exact
+            element={
+              <ProfilePage
+                loggedUser={loggedUser}
+                changeNameHandler={changeLoggedUserName}
               />
             }
           />

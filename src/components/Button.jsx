@@ -15,6 +15,8 @@ const Button = styled.button`
       border-radius: 100%;
       color: white;
       padding: 0.75rem;
+      width: 3rem;
+      height: 3rem;
     `};
 
   &:hover {

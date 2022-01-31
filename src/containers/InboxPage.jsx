@@ -47,7 +47,7 @@ const InboxPage = ({ users, loggedUser, chats, selectChatHandler }) => {
     <>
       <OptionsBar>
         <OptionsBarItem align="left">
-          <Button>
+          <Button onClick={() => navigate('/profile')}>
             <FontAwesomeIcon icon={faBars} />
           </Button>
         </OptionsBarItem>

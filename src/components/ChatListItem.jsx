@@ -31,7 +31,7 @@ const StyledBallon = styled.div`
         `
       : css`
           background: var(--green);
-          color: var(--white);
+          color: var(--smooth-white);
 
           &::before {
             content: ' ';
