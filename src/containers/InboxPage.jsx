@@ -66,7 +66,7 @@ const InboxPage = ({ users, loggedUser, chats }) => {
     setFilteredChats(updatedFilteredChats);
   };
 
-  const goToLoggedUserProfile = () => {
+  const clickMenuHandler = () => {
     navigate('/profile', {
       state: {
         profile: loggedUser,
@@ -78,7 +78,7 @@ const InboxPage = ({ users, loggedUser, chats }) => {
     <>
       <OptionsBar>
         <OptionsBarItem align="left">
-          <Button onClick={goToLoggedUserProfile}>
+          <Button onClick={clickMenuHandler}>
             <FontAwesomeIcon icon={faBars} />
           </Button>
         </OptionsBarItem>

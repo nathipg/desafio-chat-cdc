@@ -34,11 +34,11 @@ const ChatPage = ({ receiver, loggedUser, messages, removeChatHandler }) => {
     });
   };
 
-  const removeChat = () => {
+  const clickRemoveChatHandler = () => {
     removeChatHandler(chatUsers);
   };
 
-  const goToContactProfile = () => {
+  const clickSeeContact = () => {
     navigate('/profile', {
       state: {
         profile: receiver,
@@ -63,8 +63,10 @@ const ChatPage = ({ receiver, loggedUser, messages, removeChatHandler }) => {
             <>
               <Backdrop onClick={() => setShowMenu(!showMenu)} />
               <Menu>
-                <MenuItem onClick={goToContactProfile}>See contact</MenuItem>
-                <MenuItem onClick={removeChat}>Remove chat</MenuItem>
+                <MenuItem onClick={clickSeeContact}>See contact</MenuItem>
+                <MenuItem onClick={clickRemoveChatHandler}>
+                  Remove chat
+                </MenuItem>
               </Menu>
             </>
           )}

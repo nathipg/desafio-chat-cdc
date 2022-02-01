@@ -10,7 +10,7 @@ import OptionsBar from '../components/OptionsBar';
 import OptionsBarItem from '../components/OptionsBarItem';
 import PageTitle from '../components/PageTitle';
 
-const ContactsPage = ({ users, loggedUser }) => {
+const ContactsPage = ({ users, loggedUser, chats }) => {
   const navigate = useNavigate();
 
   const listUsers = () => {
@@ -25,10 +25,28 @@ const ContactsPage = ({ users, loggedUser }) => {
             key={user.id}
             user={user}
             text={user.status}
-            clickHandler={() => console.log('Clicked')}
+            clickHandler={() => clickContactHandler(user)}
           />
         )
     );
+  };
+
+  const clickContactHandler = user => {
+    const chat = chats.find(
+      chat =>
+        chat.members.indexOf(loggedUser.id) !== -1 &&
+        chat.members.indexOf(user.id) !== -1
+    );
+    const messages = chat ? chat.messages : [];
+
+    navigate('/chat', {
+      state: {
+        currentChat: {
+          receiver: user,
+          messages,
+        },
+      },
+    });
   };
 
   return (

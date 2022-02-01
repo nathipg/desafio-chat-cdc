@@ -86,7 +86,13 @@ const App = () => {
           <Route
             path="/contacts"
             exact
-            element={<ContactsPage users={users} loggedUser={loggedUser} />}
+            element={
+              <ContactsPage
+                users={users}
+                loggedUser={loggedUser}
+                chats={chats}
+              />
+            }
           />
           {location.state && location.state.profile && (
             <Route
