@@ -9,16 +9,30 @@ import {
 import Button from './Button';
 import Input from './Input';
 
+import { useState } from 'react/cjs/react.development';
+
 const StyledMessageBar = styled.div`
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   border-top: 1px solid var(--light-gray);
   padding: 1rem;
   min-height: 80px;
   max-height: 80px;
+
+  form {
+    display: flex;
+    gap: 1rem;
+  }
 `;
 
-const MessageBar = () => {
+const MessageBar = ({ receiver, addChatMessageHandler, setMessages }) => {
+  const [message, setMessage] = useState('');
+
+  const submitHandler = event => {
+    event.preventDefault();
+    addChatMessageHandler(receiver, message, setMessages, setMessage);
+  };
+
   return (
     <StyledMessageBar>
       <Button>
@@ -27,10 +41,19 @@ const MessageBar = () => {
       <Button>
         <FontAwesomeIcon icon={faGrin} />
       </Button>
-      <Input style={{ flex: 1 }} placeholder="Leave a comment..." />
-      <Button variant="primary">
-        <FontAwesomeIcon icon={faPaperPlane} />
-      </Button>
+      <form onSubmit={submitHandler}>
+        <Input
+          type="text"
+          name="message"
+          style={{ flex: 1 }}
+          placeholder="Leave a comment..."
+          value={message}
+          onChange={event => setMessage(event.target.value)}
+        />
+        <Button variant="primary">
+          <FontAwesomeIcon icon={faPaperPlane} />
+        </Button>
+      </form>
     </StyledMessageBar>
   );
 };

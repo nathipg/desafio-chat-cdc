@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const StyledChatList = styled.div`
@@ -16,13 +15,7 @@ const StyledChatList = styled.div`
   overflow: auto;
 `;
 
-const ChatList = ({ children }) => {
-  const elementRef = useRef();
-
-  useEffect(() => {
-    elementRef.current.scrollTop = elementRef.current.scrollHeight;
-  }, []);
-
+const ChatList = ({ children, elementRef }) => {
   return <StyledChatList ref={elementRef}>{children}</StyledChatList>;
 };
 

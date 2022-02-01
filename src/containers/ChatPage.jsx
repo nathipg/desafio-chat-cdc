@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
@@ -14,9 +14,17 @@ import Backdrop from '../components/Backdrop';
 import Menu from '../components/Menu';
 import MenuItem from '../components/MenuItem';
 
-const ChatPage = ({ receiver, loggedUser, messages, removeChatHandler }) => {
+const ChatPage = ({
+  receiver,
+  loggedUser,
+  chatMessages,
+  removeChatHandler,
+  addChatMessageHandler,
+}) => {
   const navigate = useNavigate();
+  const elementRef = useRef();
 
+  const [messages, setMessages] = useState(chatMessages);
   const [showMenu, setShowMenu] = useState(false);
   const chatUsers = [receiver, loggedUser];
 
@@ -47,6 +55,10 @@ const ChatPage = ({ receiver, loggedUser, messages, removeChatHandler }) => {
     });
   };
 
+  useEffect(() => {
+    elementRef.current.scrollTop = elementRef.current.scrollHeight;
+  }, [messages]);
+
   return (
     <>
       <OptionsBar>
@@ -73,8 +85,12 @@ const ChatPage = ({ receiver, loggedUser, messages, removeChatHandler }) => {
           )}
         </OptionsBarItem>
       </OptionsBar>
-      <ChatList>{listMessages()}</ChatList>
-      <MessageBar />
+      <ChatList elementRef={elementRef}>{listMessages()}</ChatList>
+      <MessageBar
+        receiver={receiver}
+        addChatMessageHandler={addChatMessageHandler}
+        setMessages={setMessages}
+      />
     </>
   );
 };

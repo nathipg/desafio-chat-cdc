@@ -6,6 +6,7 @@ import {
   useLocation,
   useNavigate,
 } from 'react-router-dom';
+import moment from 'moment';
 
 import ChatPage from './containers/ChatPage';
 import ConfigurationPage from './containers/ConfigurationPage';
@@ -45,6 +46,64 @@ const App = () => {
     setChats(updatedChats);
 
     navigate('/');
+  };
+
+  const addChatMessageHandler = (
+    receiver,
+    message,
+    setMessages,
+    setMessage
+  ) => {
+    if (message === '') {
+      return;
+    }
+
+    const chat = chats.find(
+      chat =>
+        chat.members.indexOf(loggedUser.id) !== -1 &&
+        chat.members.indexOf(receiver.id) !== -1
+    );
+    let updatedMessages;
+
+    const now = new Date();
+    const date = moment(now).format('YYYY-MM-DD HH:MM:SS');
+
+    if (chat) {
+      updatedMessages = [
+        ...chat.messages,
+        {
+          user: loggedUser.id,
+          content: message,
+          date: date,
+        },
+      ];
+    } else {
+      updatedMessages = [
+        {
+          user: loggedUser.id,
+          content: message,
+          date: date,
+        },
+      ];
+    }
+
+    const updatedChat = {
+      members: [loggedUser.id, receiver.id],
+      messages: updatedMessages,
+    };
+
+    const chatsWithoutCurrent = chats.filter(
+      chat =>
+        !(
+          chat.members.indexOf(loggedUser.id) !== -1 &&
+          chat.members.indexOf(receiver.id) !== -1
+        )
+    );
+
+    const updatedChats = [updatedChat, ...chatsWithoutCurrent];
+    setChats(updatedChats);
+    setMessages(updatedMessages);
+    setMessage('');
   };
 
   useEffect(() => {
@@ -117,8 +176,9 @@ const App = () => {
                 <ChatPage
                   receiver={location.state.currentChat.receiver}
                   loggedUser={loggedUser}
-                  messages={location.state.currentChat.messages}
+                  chatMessages={location.state.currentChat.messages}
                   removeChatHandler={removeChatHandler}
+                  addChatMessageHandler={addChatMessageHandler}
                 />
               }
             />
