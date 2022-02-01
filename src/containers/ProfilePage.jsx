@@ -101,7 +101,7 @@ const ProfilePage = ({ user, loggedUser, changeUserHandler }) => {
               </form>
             </Section>
             <Section>
-              <p>This name will be visible to your contacts.</p>
+              <p>Your name and status will be visible to your contacts.</p>
             </Section>
           </>
         ) : (
