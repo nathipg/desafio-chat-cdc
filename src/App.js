@@ -28,8 +28,8 @@ const App = () => {
     error: false,
   });
 
-  const changeLoggedUserNameHandler = name => {
-    setLoggedUser(prevState => ({ ...prevState, name }));
+  const changeLoggedUserHandler = user => {
+    setLoggedUser(user);
   };
 
   const removeChatHandler = chatUsers => {
@@ -96,7 +96,7 @@ const App = () => {
                 <ProfilePage
                   loggedUser={loggedUser}
                   user={location.state.profile}
-                  changeNameHandler={changeLoggedUserNameHandler}
+                  changeUserHandler={changeLoggedUserHandler}
                 />
               }
             />

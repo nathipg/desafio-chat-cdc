@@ -29,21 +29,32 @@ const StyledContent = styled.div`
   }
 `;
 
-const ProfilePage = ({ user, loggedUser, changeNameHandler }) => {
+const ProfilePage = ({ user, loggedUser, changeUserHandler }) => {
   const navigate = useNavigate();
-  
+
   const [userName, setUserName] = useState(user.name);
+  const [previousName, setPreviousName] = useState(user.name);
+  const [userStatus, setUserStatus] = useState(user.status);
   const isCurrentUser = user.id === loggedUser.id;
 
   const submitHandler = event => {
     event.preventDefault();
-    const { username } = formEntriesHandler(event);
+    const { name, status } = formEntriesHandler(event);
+    let updatedName;
 
-    if (username.trim().length === 0) {
-      return;
+    if (name.trim().length === 0) {
+      updatedName = previousName;
+      setUserName(updatedName);
+    } else {
+      updatedName = name.trim();
+      setPreviousName(updatedName);
     }
 
-    changeNameHandler(userName.trim());
+    changeUserHandler({
+      ...user,
+      name: updatedName,
+      status,
+    });
   };
 
   return (
@@ -66,10 +77,22 @@ const ProfilePage = ({ user, loggedUser, changeNameHandler }) => {
                 <InputGroup>
                   <Input
                     type="text"
-                    name="username"
+                    name="name"
                     value={userName}
                     onChange={event => setUserName(event.target.value)}
-                    required={true}
+                  />
+                  <Button variant="primary">
+                    <FontAwesomeIcon icon={faCheck} />
+                  </Button>
+                </InputGroup>
+
+                <SectionTitle>Status</SectionTitle>
+                <InputGroup>
+                  <Input
+                    type="text"
+                    name="status"
+                    value={userStatus}
+                    onChange={event => setUserStatus(event.target.value)}
                   />
                   <Button variant="primary">
                     <FontAwesomeIcon icon={faCheck} />
@@ -82,10 +105,15 @@ const ProfilePage = ({ user, loggedUser, changeNameHandler }) => {
             </Section>
           </>
         ) : (
-          <Section variant="primary">
-            <SectionTitle>Name</SectionTitle>
-            <span>{userName}</span>
-          </Section>
+          <>
+            <Section variant="primary">
+              <SectionTitle>Name</SectionTitle>
+              <span>{userName}</span>
+
+              <SectionTitle>Status</SectionTitle>
+              <span>{userStatus}</span>
+            </Section>
+          </>
         )}
       </StyledContent>
     </>

@@ -105,7 +105,7 @@ const InboxPage = ({ users, loggedUser, chats }) => {
               <Backdrop onClick={() => setShowMenu(!showMenu)} />
               <Menu>
                 <MenuItem onClick={() => navigate('/contacts')}>
-                  New chat
+                  Contacts
                 </MenuItem>
                 <MenuItem>Configuration</MenuItem>
                 <MenuItem>Logout</MenuItem>
