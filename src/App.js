@@ -105,6 +105,7 @@ const App = () => {
                   loggedUser={loggedUser}
                   user={location.state.profile}
                   changeUserHandler={changeLoggedUserHandler}
+                  messages={location.state.messages}
                 />
               }
             />

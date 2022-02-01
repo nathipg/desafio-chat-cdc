@@ -7,13 +7,14 @@ import OptionsBar from './OptionsBar';
 import OptionsBarItem from './OptionsBarItem';
 import PageTitle from './PageTitle';
 
-const DefaultHeader = ({ title }) => {
+const DefaultHeader = ({ title, to, state }) => {
   const navigate = useNavigate();
+  const url = to ? to : '/';
 
   return (
     <OptionsBar>
       <OptionsBarItem align="left">
-        <Button onClick={() => navigate('/')}>
+        <Button onClick={() => navigate(url, state)}>
           <FontAwesomeIcon icon={faArrowLeft} />
         </Button>
         <PageTitle>{title}</PageTitle>

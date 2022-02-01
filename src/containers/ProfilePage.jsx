@@ -26,7 +26,7 @@ const StyledContent = styled.div`
   }
 `;
 
-const ProfilePage = ({ user, loggedUser, changeUserHandler }) => {
+const ProfilePage = ({ user, loggedUser, messages, changeUserHandler }) => {
   const [userName, setUserName] = useState(user.name);
   const [previousName, setPreviousName] = useState(user.name);
   const [userStatus, setUserStatus] = useState(user.status);
@@ -54,7 +54,22 @@ const ProfilePage = ({ user, loggedUser, changeUserHandler }) => {
 
   return (
     <>
-      <DefaultHeader title={isCurrentUser ? 'Profile' : 'Contact'} />
+      <DefaultHeader
+        title={isCurrentUser ? 'Profile' : 'Contact'}
+        to={isCurrentUser ? '/' : '/chat'}
+        state={
+          isCurrentUser
+            ? {}
+            : {
+                state: {
+                  currentChat: {
+                    receiver: user,
+                    messages: messages,
+                  },
+                },
+              }
+        }
+      />
       <StyledContent>
         <UserIcon picture={user.picture} size="lg" />
         {isCurrentUser ? (

@@ -42,6 +42,7 @@ const ChatPage = ({ receiver, loggedUser, messages, removeChatHandler }) => {
     navigate('/profile', {
       state: {
         profile: receiver,
+        messages,
       },
     });
   };
