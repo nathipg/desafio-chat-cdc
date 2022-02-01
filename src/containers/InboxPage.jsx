@@ -10,13 +10,14 @@ import {
 import Button from '../components/Button';
 import Input from '../components/Input';
 import List from '../components/List';
-import ListItem from '../components/ListItem';
 import Message from '../components/Message';
 import OptionsBar from '../components/OptionsBar';
 import OptionsBarItem from '../components/OptionsBarItem';
 import Menu from '../components/Menu';
 import MenuItem from '../components/MenuItem';
 import Backdrop from '../components/Backdrop';
+import ListItem from '../components/ListItem';
+import User from '../components/User';
 
 const InboxPage = ({ users, loggedUser, chats }) => {
   const navigate = useNavigate();
@@ -37,8 +38,6 @@ const InboxPage = ({ users, loggedUser, chats }) => {
       return (
         <ListItem
           key={userId}
-          user={user}
-          text={lastMessage}
           clickHandler={() => {
             navigate('/chat', {
               state: {
@@ -49,7 +48,9 @@ const InboxPage = ({ users, loggedUser, chats }) => {
               },
             });
           }}
-        />
+        >
+          <User user={user} text={lastMessage} />
+        </ListItem>
       );
     });
   };
@@ -107,7 +108,9 @@ const InboxPage = ({ users, loggedUser, chats }) => {
                 <MenuItem onClick={() => navigate('/contacts')}>
                   Contacts
                 </MenuItem>
-                <MenuItem>Configuration</MenuItem>
+                <MenuItem onClick={() => navigate('/configuration')}>
+                  Configuration
+                </MenuItem>
                 <MenuItem>Logout</MenuItem>
               </Menu>
             </>

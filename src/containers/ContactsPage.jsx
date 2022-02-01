@@ -1,14 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Button from '../components/Button';
 import List from '../components/List';
 import ListItem from '../components/ListItem';
 import Message from '../components/Message';
-import OptionsBar from '../components/OptionsBar';
-import OptionsBarItem from '../components/OptionsBarItem';
-import PageTitle from '../components/PageTitle';
+import User from '../components/User';
+import DefaultHeader from '../components/DefaultHeader';
 
 const ContactsPage = ({ users, loggedUser, chats }) => {
   const navigate = useNavigate();
@@ -23,10 +19,10 @@ const ContactsPage = ({ users, loggedUser, chats }) => {
         user.id !== loggedUser.id && (
           <ListItem
             key={user.id}
-            user={user}
-            text={user.status}
             clickHandler={() => clickContactHandler(user)}
-          />
+          >
+            <User user={user} text={user.status} />
+          </ListItem>
         )
     );
   };
@@ -51,14 +47,7 @@ const ContactsPage = ({ users, loggedUser, chats }) => {
 
   return (
     <>
-      <OptionsBar>
-        <OptionsBarItem align="left">
-          <Button onClick={() => navigate('/')}>
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </Button>
-          <PageTitle>Contacts</PageTitle>
-        </OptionsBarItem>
-      </OptionsBar>
+      <DefaultHeader title="Contacts" />
       <List>{listUsers()}</List>
     </>
   );

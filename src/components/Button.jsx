@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 
 const Button = styled.button`
+  display: flex;
+  align-items: center;
   border: none;
   background: none;
   color: var(--gray);

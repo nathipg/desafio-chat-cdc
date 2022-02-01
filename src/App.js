@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import ChatPage from './containers/ChatPage';
+import ConfigurationPage from './containers/ConfigurationPage';
 import ContactsPage from './containers/ContactsPage';
 import InboxPage from './containers/InboxPage';
 import ProfilePage from './containers/ProfilePage';
@@ -94,6 +95,7 @@ const App = () => {
               />
             }
           />
+          <Route path="/configuration" exact element={<ConfigurationPage />} />
           {location.state && location.state.profile && (
             <Route
               path="/profile"

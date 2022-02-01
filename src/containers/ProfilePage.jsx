@@ -1,18 +1,15 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../components/Button';
-import OptionsBar from '../components/OptionsBar';
-import OptionsBarItem from '../components/OptionsBarItem';
 import UserIcon from '../components/UserIcon';
-import PageTitle from '../components/PageTitle';
 import Section from '../components/Section';
 import Input from '../components/Input';
 import SectionTitle from '../components/SectionTitle';
 import InputGroup from '../components/InputGroup';
+import DefaultHeader from '../components/DefaultHeader';
 
 import { formEntriesHandler } from '../util/utility';
 
@@ -30,8 +27,6 @@ const StyledContent = styled.div`
 `;
 
 const ProfilePage = ({ user, loggedUser, changeUserHandler }) => {
-  const navigate = useNavigate();
-
   const [userName, setUserName] = useState(user.name);
   const [previousName, setPreviousName] = useState(user.name);
   const [userStatus, setUserStatus] = useState(user.status);
@@ -59,14 +54,7 @@ const ProfilePage = ({ user, loggedUser, changeUserHandler }) => {
 
   return (
     <>
-      <OptionsBar>
-        <OptionsBarItem align="left">
-          <Button onClick={() => navigate('/')}>
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </Button>
-          <PageTitle>{isCurrentUser ? 'Profile' : 'Contact'}</PageTitle>
-        </OptionsBarItem>
-      </OptionsBar>
+      <DefaultHeader title={isCurrentUser ? 'Profile' : 'Contact'} />
       <StyledContent>
         <UserIcon picture={user.picture} size="lg" />
         {isCurrentUser ? (
