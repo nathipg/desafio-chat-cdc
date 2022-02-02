@@ -31,6 +31,7 @@ const InboxPage = () => {
   const { chats } = useContext(ChatContext);
 
   const [showSearch, setShowSearch] = useState(false);
+  const [search, setSearch] = useState('');
   const [showMenu, setShowMenu] = useState(false);
   const [filteredChats, setFilteredChats] = useState(chats);
 
@@ -73,6 +74,7 @@ const InboxPage = () => {
       return filteredUsers.find(user => user.id === receiverId);
     });
     setFilteredChats(updatedFilteredChats);
+    setSearch(search);
   };
 
   const clickMenuHandler = () => {
@@ -97,6 +99,7 @@ const InboxPage = () => {
               type="text"
               name="search"
               size="sm"
+              value={search}
               onChange={searchChat}
               autoFocus
             />
