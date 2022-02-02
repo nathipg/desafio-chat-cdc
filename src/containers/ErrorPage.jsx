@@ -4,7 +4,7 @@ import SectionTitle from '../components/SectionTitle';
 const ErrorPage = () => {
   return (
     <>
-      <Section>
+      <Section variant="primary">
         <SectionTitle>Error</SectionTitle>
         <p>Could not load app :(</p>
         <p>Please, try again later</p>
