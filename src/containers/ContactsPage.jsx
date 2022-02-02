@@ -9,14 +9,12 @@ import DefaultHeader from '../components/DefaultHeader';
 
 import AuthContext from '../store/contexts/auth';
 import UserContext from '../store/contexts/user';
-import ChatContext from '../store/contexts/chat';
 
 const ContactsPage = () => {
   const navigate = useNavigate();
 
   const { loggedUser } = useContext(AuthContext);
   const { users } = useContext(UserContext);
-  const { chats, getChatByReceiver } = useContext(ChatContext);
 
   const listUsers = () => {
     if (users.length === 0) {
@@ -37,14 +35,10 @@ const ContactsPage = () => {
   };
 
   const clickContactHandler = user => {
-    const chat = getChatByReceiver(user);
-    const messages = chat ? chat.messages : [];
-
     navigate('/chat', {
       state: {
         currentChat: {
           receiver: user,
-          messages,
         },
       },
     });

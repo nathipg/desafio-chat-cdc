@@ -52,7 +52,6 @@ const InboxPage = () => {
               state: {
                 currentChat: {
                   receiver: user,
-                  messages: chat.messages,
                 },
               },
             });
