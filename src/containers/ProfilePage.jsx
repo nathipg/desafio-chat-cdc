@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,8 @@ import Input from '../components/Input';
 import SectionTitle from '../components/SectionTitle';
 import InputGroup from '../components/InputGroup';
 import DefaultHeader from '../components/DefaultHeader';
+
+import AuthContext from '../store/contexts/auth';
 
 import { formEntriesHandler } from '../util/utility';
 
@@ -26,7 +28,9 @@ const StyledContent = styled.div`
   }
 `;
 
-const ProfilePage = ({ user, loggedUser, messages, changeUserHandler }) => {
+const ProfilePage = ({ user }) => {
+  const { loggedUser, changeLoggedUserHandler } = useContext(AuthContext);
+
   const [userName, setUserName] = useState(user.name);
   const [previousName, setPreviousName] = useState(user.name);
   const [userStatus, setUserStatus] = useState(user.status);
@@ -45,7 +49,7 @@ const ProfilePage = ({ user, loggedUser, messages, changeUserHandler }) => {
       setPreviousName(updatedName);
     }
 
-    changeUserHandler({
+    changeLoggedUserHandler({
       ...user,
       name: updatedName,
       status,
@@ -64,7 +68,6 @@ const ProfilePage = ({ user, loggedUser, messages, changeUserHandler }) => {
                 state: {
                   currentChat: {
                     receiver: user,
-                    messages: messages,
                   },
                 },
               }

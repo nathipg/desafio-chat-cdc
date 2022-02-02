@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
@@ -14,21 +14,24 @@ import Backdrop from '../components/Backdrop';
 import Menu from '../components/Menu';
 import MenuItem from '../components/MenuItem';
 
-const ChatPage = ({
-  receiver,
-  loggedUser,
-  chatMessages,
-  removeChatHandler,
-  addChatMessageHandler,
-}) => {
+import AuthContext from '../store/contexts/auth';
+import ChatContext from '../store/contexts/chat';
+
+const ChatPage = ({ receiver }) => {
   const navigate = useNavigate();
   const elementRef = useRef();
 
-  const [messages, setMessages] = useState(chatMessages);
+  const { loggedUser } = useContext(AuthContext);
+  const { chats, removeChat, addChatMessage, getChatByReceiver } =
+    useContext(ChatContext);
+
   const [showMenu, setShowMenu] = useState(false);
   const chatUsers = [receiver, loggedUser];
 
   const listMessages = () => {
+    const chat = getChatByReceiver(receiver);
+    const messages = chat ? chat.messages : [];
+
     return messages.map((message, key) => {
       const user = chatUsers.find(user => user.id === message.user);
       return (
@@ -43,21 +46,20 @@ const ChatPage = ({
   };
 
   const clickRemoveChatHandler = () => {
-    removeChatHandler(chatUsers);
+    removeChat(chatUsers);
   };
 
   const clickSeeContact = () => {
     navigate('/profile', {
       state: {
         profile: receiver,
-        messages,
       },
     });
   };
 
   useEffect(() => {
     elementRef.current.scrollTop = elementRef.current.scrollHeight;
-  }, [messages]);
+  }, [chats]);
 
   return (
     <>
@@ -86,11 +88,7 @@ const ChatPage = ({
         </OptionsBarItem>
       </OptionsBar>
       <ChatList elementRef={elementRef}>{listMessages()}</ChatList>
-      <MessageBar
-        receiver={receiver}
-        addChatMessageHandler={addChatMessageHandler}
-        setMessages={setMessages}
-      />
+      <MessageBar receiver={receiver} addChatMessage={addChatMessage} />
     </>
   );
 };

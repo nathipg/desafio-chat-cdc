@@ -140,11 +140,11 @@ const users = [
   },
 ];
 
-export const loadUsers = () => {
+export const load = () => {
   return Promise.resolve(users);
 };
 
-export const loadUserChats = userId => {
+export const loadChats = userId => {
   return Promise.resolve(
     allChats.filter(chat => chat.members.indexOf(userId) !== -1)
   );

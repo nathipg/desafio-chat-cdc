@@ -25,12 +25,13 @@ const StyledMessageBar = styled.div`
   }
 `;
 
-const MessageBar = ({ receiver, addChatMessageHandler, setMessages }) => {
+const MessageBar = ({ receiver, addChatMessage }) => {
   const [message, setMessage] = useState('');
 
   const submitHandler = event => {
     event.preventDefault();
-    addChatMessageHandler(receiver, message, setMessages, setMessage);
+    setMessage('');
+    addChatMessage(receiver, message);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -19,8 +19,17 @@ import Backdrop from '../components/Backdrop';
 import ListItem from '../components/ListItem';
 import User from '../components/User';
 
-const InboxPage = ({ users, loggedUser, chats }) => {
+import AuthContext from '../store/contexts/auth';
+import UserContext from '../store/contexts/user';
+import ChatContext from '../store/contexts/chat';
+
+const InboxPage = () => {
   const navigate = useNavigate();
+
+  const { loggedUser } = useContext(AuthContext);
+  const { users } = useContext(UserContext);
+  const { chats } = useContext(ChatContext);
+
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [filteredChats, setFilteredChats] = useState(chats);

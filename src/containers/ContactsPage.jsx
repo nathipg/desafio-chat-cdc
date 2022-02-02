@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import List from '../components/List';
@@ -6,8 +7,16 @@ import Message from '../components/Message';
 import User from '../components/User';
 import DefaultHeader from '../components/DefaultHeader';
 
-const ContactsPage = ({ users, loggedUser, chats }) => {
+import AuthContext from '../store/contexts/auth';
+import UserContext from '../store/contexts/user';
+import ChatContext from '../store/contexts/chat';
+
+const ContactsPage = () => {
   const navigate = useNavigate();
+
+  const { loggedUser } = useContext(AuthContext);
+  const { users } = useContext(UserContext);
+  const { chats, getChatByReceiver } = useContext(ChatContext);
 
   const listUsers = () => {
     if (users.length === 0) {
@@ -28,11 +37,7 @@ const ContactsPage = ({ users, loggedUser, chats }) => {
   };
 
   const clickContactHandler = user => {
-    const chat = chats.find(
-      chat =>
-        chat.members.indexOf(loggedUser.id) !== -1 &&
-        chat.members.indexOf(user.id) !== -1
-    );
+    const chat = getChatByReceiver(user);
     const messages = chat ? chat.messages : [];
 
     navigate('/chat', {
