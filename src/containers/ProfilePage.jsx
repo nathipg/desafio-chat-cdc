@@ -13,8 +13,6 @@ import DefaultHeader from '../components/DefaultHeader';
 
 import AuthContext from '../store/contexts/auth';
 
-import { formEntriesHandler } from '../util/utility';
-
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,21 +36,20 @@ const ProfilePage = ({ user }) => {
 
   const submitHandler = event => {
     event.preventDefault();
-    const { name, status } = formEntriesHandler(event);
     let updatedName;
 
-    if (name.trim().length === 0) {
+    if (userName.trim().length === 0) {
       updatedName = previousName;
       setUserName(updatedName);
     } else {
-      updatedName = name.trim();
+      updatedName = userName.trim();
       setPreviousName(updatedName);
     }
 
     changeLoggedUserHandler({
       ...user,
       name: updatedName,
-      status,
+      userStatus,
     });
   };
 
