@@ -59,12 +59,7 @@ const App = () => {
             <Route
               path="/profile"
               exact
-              element={
-                <ProfilePage
-                  user={location.state.profile}
-                  messages={location.state.messages}
-                />
-              }
+              element={<ProfilePage user={location.state.profile} />}
             />
           )}
           {location.state && location.state.currentChat && (
