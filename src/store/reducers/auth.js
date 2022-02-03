@@ -1,5 +1,8 @@
 const changeHandler = (prevState, action) => {
-  return action.user;
+  return {
+    ...prevState,
+    ...action.user,
+  };
 };
 
 export const authReducer = (prevState, action) => {

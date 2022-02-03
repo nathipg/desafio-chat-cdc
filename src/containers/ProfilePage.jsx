@@ -36,6 +36,7 @@ const ProfilePage = ({ user }) => {
 
   const submitHandlerName = event => {
     event.preventDefault();
+    
     let updatedName;
 
     if (userName.trim().length === 0) {

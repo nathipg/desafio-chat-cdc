@@ -50,26 +50,28 @@ const App = () => {
   );
 
   useEffect(() => {
-    (async () => {
-      try {
-        await loadUsers();
-        await loadChats();
+    if (!loading.complete) {
+      (async () => {
+        try {
+          await loadUsers();
+          await loadChats();
 
-        setLoading(prevState => ({
-          ...prevState,
-          complete: true,
-        }));
-      } catch (err) {
-        console.error(err);
+          setLoading(prevState => ({
+            ...prevState,
+            complete: true,
+          }));
+        } catch (err) {
+          console.error(err);
 
-        setLoading(prevState => ({
-          ...prevState,
-          complete: true,
-          error: true,
-        }));
-      }
-    })();
-  }, [loadUsers, loadChats]);
+          setLoading(prevState => ({
+            ...prevState,
+            complete: true,
+            error: true,
+          }));
+        }
+      })();
+    }
+  }, [loadUsers, loadChats, loading]);
 
   useEffect(() => {
     setIsDesktop(responsive.isDesktop(window.innerWidth));

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -8,8 +9,6 @@ import {
 
 import Button from './Button';
 import Input from './Input';
-
-import { useState } from 'react/cjs/react.development';
 
 const StyledMessageBar = styled.div`
   display: flex;
