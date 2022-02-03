@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../components/Button';
+import ConditionalWrapper from '../components/ConditionalWrapper ';
 import Input from '../components/Input';
 import List from '../components/List';
 import Message from '../components/Message';
@@ -23,7 +24,7 @@ import AuthContext from '../store/contexts/auth';
 import UserContext from '../store/contexts/user';
 import ChatContext from '../store/contexts/chat';
 
-const InboxPage = () => {
+const InboxPage = ({ isDesktop, wrapper }) => {
   const navigate = useNavigate();
 
   const { loggedUser } = useContext(AuthContext);
@@ -85,8 +86,20 @@ const InboxPage = () => {
     });
   };
 
+  useEffect(() => {
+    setFilteredChats(chats);
+  }, [chats]);
+
   return (
-    <>
+    <ConditionalWrapper
+      condition={isDesktop}
+      wrapper={wrapper}
+      extra={{
+        position: 'relative',
+        'border-right': '1px solid var(--light-gray)',
+        height: '100%',
+      }}
+    >
       <OptionsBar>
         <OptionsBarItem align="left">
           <Button onClick={clickMenuHandler}>
@@ -115,7 +128,7 @@ const InboxPage = () => {
           {showMenu && (
             <>
               <Backdrop onClick={() => setShowMenu(!showMenu)} />
-              <Menu>
+              <Menu onClick={() => setShowMenu(!showMenu)}>
                 <MenuItem onClick={() => navigate('/contacts')}>
                   Contacts
                 </MenuItem>
@@ -129,7 +142,7 @@ const InboxPage = () => {
         </OptionsBarItem>
       </OptionsBar>
       <List>{listChats()}</List>
-    </>
+    </ConditionalWrapper>
   );
 };
 

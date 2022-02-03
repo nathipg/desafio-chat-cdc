@@ -49,7 +49,7 @@ const ProfilePage = ({ user }) => {
     changeLoggedUserHandler({
       ...user,
       name: updatedName,
-      userStatus,
+      status: userStatus,
     });
   };
 

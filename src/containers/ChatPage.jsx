@@ -59,7 +59,7 @@ const ChatPage = ({ receiver }) => {
 
   useEffect(() => {
     elementRef.current.scrollTop = elementRef.current.scrollHeight;
-  }, [chats]);
+  }, [chats, receiver]);
 
   return (
     <>

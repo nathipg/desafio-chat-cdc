@@ -13,7 +13,7 @@ import { useState } from 'react/cjs/react.development';
 
 const StyledMessageBar = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
   border-top: 1px solid var(--light-gray);
   padding: 1rem;
   min-height: 80px;
@@ -21,6 +21,7 @@ const StyledMessageBar = styled.div`
 
   form {
     display: flex;
+    flex: 1;
     gap: 1rem;
   }
 `;

@@ -13,6 +13,14 @@ const Section = styled.div`
           background: var(--white);
         `
       : null}
+
+  ${({ variant }) =>
+    variant === 'solid'
+      ? css`
+          background: var(--pale-blue);
+          height: 100%;
+        `
+      : null}
 `;
 
 export default Section;
