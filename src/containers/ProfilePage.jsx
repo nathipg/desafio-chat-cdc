@@ -34,7 +34,7 @@ const ProfilePage = ({ user }) => {
   const [userStatus, setUserStatus] = useState(user.status);
   const isCurrentUser = user.id === loggedUser.id;
 
-  const submitHandler = event => {
+  const submitHandlerName = event => {
     event.preventDefault();
     let updatedName;
 
@@ -49,6 +49,14 @@ const ProfilePage = ({ user }) => {
     changeLoggedUserHandler({
       ...user,
       name: updatedName,
+    });
+  };
+
+  const submitHandlerStatus = event => {
+    event.preventDefault();
+
+    changeLoggedUserHandler({
+      ...user,
       status: userStatus,
     });
   };
@@ -75,8 +83,8 @@ const ProfilePage = ({ user }) => {
         {isCurrentUser ? (
           <>
             <Section variant="primary">
-              <form onSubmit={submitHandler}>
-                <SectionTitle>Your name</SectionTitle>
+              <SectionTitle>Your name</SectionTitle>
+              <form onSubmit={submitHandlerName}>
                 <InputGroup>
                   <Input
                     type="text"
@@ -88,8 +96,10 @@ const ProfilePage = ({ user }) => {
                     <FontAwesomeIcon icon={faCheck} />
                   </Button>
                 </InputGroup>
+              </form>
 
-                <SectionTitle>Status</SectionTitle>
+              <SectionTitle>Status</SectionTitle>
+              <form onSubmit={submitHandlerStatus}>
                 <InputGroup>
                   <Input
                     type="text"
