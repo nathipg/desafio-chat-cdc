@@ -89,9 +89,17 @@ const App = () => {
             <ConditionalWrapper
               condition={isDesktop}
               wrapper={wrapper}
-              extra={{ 'min-width': 340 }}
+              extra={{ 'min-width': 340, 'max-width': 340 }}
             >
-              <InboxPage isDesktop={true} wrapper={wrapper} />
+              <InboxPage
+                isDesktop={true}
+                wrapper={wrapper}
+                receiver={
+                  location.state &&
+                  location.state.currentChat &&
+                  location.state.currentChat.receiver
+                }
+              />
             </ConditionalWrapper>
           )}
           <ConditionalWrapper

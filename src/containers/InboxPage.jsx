@@ -24,7 +24,7 @@ import AuthContext from '../store/contexts/auth';
 import UserContext from '../store/contexts/user';
 import ChatContext from '../store/contexts/chat';
 
-const InboxPage = ({ isDesktop, wrapper }) => {
+const InboxPage = ({ isDesktop, wrapper, receiver }) => {
   const navigate = useNavigate();
 
   const { loggedUser } = useContext(AuthContext);
@@ -49,6 +49,7 @@ const InboxPage = ({ isDesktop, wrapper }) => {
       return (
         <ListItem
           key={userId}
+          active={receiver && receiver.id === user.id}
           clickHandler={() => {
             navigate('/chat', {
               state: {

@@ -44,6 +44,10 @@ const StyledBallon = styled.div`
             margin-top: -0.3rem;
           }
         `}
+
+  span {
+    word-break: break-all;
+  }
 `;
 
 const ChatListItem = ({ user, message, side }) => {

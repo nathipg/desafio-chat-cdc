@@ -11,7 +11,7 @@ const removeHandler = (prevState, action) => {
 
 const addMessageHandler = (prevState, action) => {
   if (action.message === '') {
-    return;
+    return prevState;
   }
 
   const chat = getChatByMembers(prevState, action.loggedUser, action.receiver);
