@@ -1,10 +1,9 @@
 # Build project
 
 Run the following commands:
-- `npm install -g serve`
 - `npm install`
 - `npm run build`
-- `serve -s build`
+- `npx serve -s build`
 
 Then, access the local address provided.
 
